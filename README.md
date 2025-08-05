@@ -120,8 +120,7 @@ WHERE movie_release_year >= 1970
 GROUP BY decade
 ORDER BY decade;
 
-![Q9 Output](images/Distribution of Movies by Decade(Post 1970).png)
-
+![Distribution of Movies by Decade(Post 1970)](images/images/mubi_ss/Distribution%20of%20Movies%20by%20Decade(Post%201970).png)
 
 
 Q10 Top 10 Lowest-Rated Movies with at least 100 ratings:
