@@ -8,7 +8,7 @@ SELECT
   (SELECT COUNT(*) FROM movies) AS total_movies,
   (SELECT COUNT(*) FROM ratings) AS total_ratings;
 
-![Q1 Output](images/total movies and total ratings.png)
+![Q1 Output](images/total_movies_and_total ratings.png)
 ![Actual vs Predicted](Images/actual_vs_predicted.png)
 
 
