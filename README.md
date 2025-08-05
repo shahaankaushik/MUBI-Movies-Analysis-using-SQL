@@ -8,8 +8,9 @@ SELECT
   (SELECT COUNT(*) FROM movies) AS total_movies,
   (SELECT COUNT(*) FROM ratings) AS total_ratings;
 
-![Q1 Output](images/total_movies_and_total ratings.png)
-![Actual vs Predicted](Images/actual_vs_predicted.png)
+
+![total movies and total ratings](images/images/mubi_ss/total%20movies%20and%20total%20ratings.png)
+
 
 
 Q2 Top 10 Highest-Rated Movies (min 100 ratings)
@@ -25,7 +26,7 @@ ORDER BY avg_rating DESC
 LIMIT 10;
 
 
-![Q2 Output](images/Top 10 Highest-Rated Movies (min 100 ratings).png)
+![Top 10 Highest-Rated Movies (min 100 ratings)](images/images/mubi_ss/Top%2010%20Highest-Rated%20Movies%20(min%20100%20ratings).png)
 
 
 Q3 Most-Watched Movies
@@ -39,7 +40,7 @@ ORDER BY watch_count DESC
 LIMIT 10;
 
 
-![Q3](images/images/mubi_ss/Most%20Watched%20Movies%20by%20Users%20Under%2025.png)
+![Most-Watched Movies](images/images/mubi_ss/Most-Watched%20Movies.png)
 
 
 Q4 Movies with the Most 5-Star Ratings
@@ -52,7 +53,7 @@ GROUP BY m.movie_id
 ORDER BY five_star_count DESC
 LIMIT 10;
 
-![Q4 Output](images/Movies with the Most 5-Star Ratings.png)
+![Movies with the Most 5 Star Ratings](images/images/mubi_ss/Movies%20with%20the%20Most%205%20Star%20Ratings.png)
 
 
 Q5 Lowest Rated Movies (with at least 50 ratings)
@@ -65,8 +66,7 @@ HAVING COUNT(*) >= 50
 ORDER BY avg_rating ASC
 LIMIT 10;
 
-![Q5 Output](images/Lowest Rated Movies (with at least 50 ratings).png)
-
+![Top 10 Lowest-Rated Movies with at least 100 ratings](images/images/mubi_ss/Top%2010%20Lowest-Rated%20Movies%20with%20at%20least%20100%20ratings.png)
 
 
 Q6 Most Active Users (Based on Number of Ratings)
@@ -88,7 +88,7 @@ SELECT
   (SELECT movie_title FROM movies ORDER BY movie_release_year DESC LIMIT 1) AS newest_movie,
   (SELECT movie_title FROM movies ORDER BY movie_release_year ASC LIMIT 1) AS oldest_movie;
 
-![Q7 Output](images/Newest vs. Oldest Movies in the Database.png)
+![Newest vs. Oldest Movies in the Database](images/images/mubi_ss/Newest%20vs.%20Oldest%20Movies%20in%20the%20Database.png)
 
 
 Q8 Distribution of Ratings (1-5)
@@ -98,7 +98,7 @@ FROM ratings
 GROUP BY rating_score
 ORDER BY rating_score;
 
-![Q8 Output](images/Distribution of Ratings (1-5).png)
+![Distribution of Ratings (1-5)](images/images/mubi_ss/Distribution%20of%20Ratings%20(1-5).png)
 
 
 
@@ -161,8 +161,8 @@ SELECT
     'Rated Movies' AS activity, COUNT(*) FROM rating_users;
 
 
-    ![Q11 Output](images/Users who created lists vs rated movies
-.png)
+![Users who created lists vs rated movies](images/images/mubi_ss/Users%20who%20created%20lists%20vs%20rated%20movies.png)
+
 
     
 
@@ -185,8 +185,7 @@ ORDER BY
     rating_bucket;
 
 
-    ![Q12 Output](images/Ratings Distribution (Score Buckets)
-.png)
+![Ratings Distribution (Score Buckets)](images/images/mubi_ss/Ratings%20Distribution%20(Score%20Buckets).png)
 
     
 
@@ -223,7 +222,7 @@ ORDER BY
 LIMIT 10;
 
 
-![Q13 Output](images/Most Polarizing Movies (High Std Dev in Ratings).png)
+![Most Polarizing Movies (High Std Dev in Ratings)](images/images/mubi_ss/Most%20Polarizing%20Movies%20(High%20Std%20Dev%20in%20Ratings).png)
 
 
 
@@ -246,8 +245,9 @@ FROM
 WHERE 
     JULIANDAY(last_rating) - JULIANDAY(first_rating) >= 30;
 
-![Q14 Output](images/User Retention Proxy (Users who returned to rate after 30 days)
-.png)
+
+![User Retention Proxy (Users who returned to rate after 30 days)](images/images/mubi_ss/User%20Retention%20Proxy%20(Users%20who%20returned%20to%20rate%20after%2030%20days).png)
+
 
 
 
@@ -291,4 +291,4 @@ ORDER BY
 LIMIT 10;
 
 
-![Q16](images/images/mubi_ss/Top%20Directors%20Based%20on%20Average%20Movie%20Rating%20(Min.%205%20Movies).png)
+![Top Directors by Movie Count](images/images/mubi_ss/Top%20Directors%20by%20Movie%20Count.png)
