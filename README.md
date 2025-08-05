@@ -267,8 +267,8 @@ ORDER BY
     ratings_in_a_day DESC;
 
 
-![Q15 Output](images/Detect Bot-like Behavior: Users Who Rated 100+ Movies in 1 Day
-.png)
+![Detect Bot Users](images/images/mubi_ss/Detect%20Bot-like%20Behavior%20Users%20Who%20Rated%20100%2B%20Movies%20in%201%20Day.png)
+
 
 
 
