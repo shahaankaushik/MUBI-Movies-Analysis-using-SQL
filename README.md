@@ -1,6 +1,6 @@
 # MUBI-Movies-Analysis-using-SQL
 Data Analysis from the MUBI movies data using SQL queries
-## Q1 total movies and total ratings
+## Q1 Total Movies and Total Ratings
 ```sql
 SELECT 
   (SELECT COUNT(*) FROM movies) AS total_movies,
