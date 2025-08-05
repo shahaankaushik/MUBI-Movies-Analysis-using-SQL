@@ -91,8 +91,21 @@ ORDER BY rating_score;
 ### ✅ Q9: Ratings Distribution (Score Buckets)
 
 ```sql
--- Your SQL query for "Ratings Distribution (Score Buckets)" goes here
-```
+SELECT 
+    CASE 
+        WHEN rating_score BETWEEN 0 AND 2 THEN '0-2'
+        WHEN rating_score BETWEEN 2.1 AND 4 THEN '2.1-4'
+        WHEN rating_score BETWEEN 4.1 AND 6 THEN '4.1-6'
+        WHEN rating_score BETWEEN 6.1 AND 8 THEN '6.1-8'
+        ELSE '8.1-10'
+    END AS rating_bucket,
+    COUNT(*) AS num_ratings
+FROM 
+    ratings
+GROUP BY 
+    rating_bucket
+ORDER BY 
+    rating_bucket;```
 
 ![Ratings Distribution (Score Buckets)](images/images/mubi_ss/Ratings%20Distribution%20%28Score%20Buckets%29.png)
 
@@ -101,7 +114,15 @@ ORDER BY rating_score;
 ### ✅ Q10: Top 10 Highest-Rated Movies (min 100 ratings)
 
 ```sql
--- Your SQL query for "Top 10 Highest-Rated Movies (min 100 ratings)" goes here
+SELECT m.movie_title, 
+       ROUND(AVG(r.rating_score), 2) AS avg_rating, 
+       COUNT(*) AS rating_count
+FROM movies m
+JOIN ratings r ON m.movie_id = r.movie_id
+GROUP BY m.movie_id
+HAVING COUNT(*) >= 100
+ORDER BY avg_rating DESC
+LIMIT 10;
 ```
 
 ![Top 10 Highest-Rated Movies (min 100 ratings)](images/images/mubi_ss/Top%2010%20Highest-Rated%20Movies%20%28min%20100%20ratings%29.png)
@@ -111,7 +132,21 @@ ORDER BY rating_score;
 ### ✅ Q11: Top 10 Lowest-Rated Movies with at least 100 ratings
 
 ```sql
--- Your SQL query for "Top 10 Lowest-Rated Movies with at least 100 ratings" goes here
+SELECT 
+    m.movie_title, 
+    ROUND(AVG(r.rating_score), 2) AS avg_rating, 
+    COUNT(r.rating_score) AS rating_count
+FROM 
+    ratings r
+JOIN 
+    movies m ON r.movie_id = m.movie_id
+GROUP BY 
+    r.movie_id
+HAVING 
+    COUNT(r.rating_score) >= 100
+ORDER BY 
+    avg_rating ASC
+LIMIT 10;
 ```
 
 ![Top 10 Lowest-Rated Movies with at least 100 ratings](images/images/mubi_ss/Top%2010%20Lowest-Rated%20Movies%20with%20at%20least%20100%20ratings.png)
@@ -146,8 +181,9 @@ LIMIT 10;
 ### ✅ Q13: total movies and total ratings
 
 ```sql
--- Your SQL query for "total movies and total ratings" goes here
-```
+SELECT 
+  (SELECT COUNT(*) FROM movies) AS total_movies,
+  (SELECT COUNT(*) FROM ratings) AS total_ratings;```
 
 ![total movies and total ratings](images/images/mubi_ss/total%20movies%20and%20total%20ratings.png)
 
@@ -156,7 +192,22 @@ LIMIT 10;
 ### ✅ Q14: User Retention Proxy (Users who returned to rate after 30 days)
 
 ```sql
--- Your SQL query for "User Retention Proxy (Users who returned to rate after 30 days)" goes here
+WITH user_activity AS (
+  SELECT 
+    user_id,
+    MIN(DATE(rating_timestamp_utc)) AS first_rating,
+    MAX(DATE(rating_timestamp_utc)) AS last_rating
+  FROM 
+    ratings
+  GROUP BY user_id
+)
+SELECT 
+    COUNT(*) AS users_retained,
+    ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM user_activity), 2) AS retention_rate
+FROM 
+    user_activity
+WHERE 
+    JULIANDAY(last_rating) - JULIANDAY(first_rating) >= 30;
 ```
 
 ![User Retention Proxy (Users who returned to rate after 30 days)](images/images/mubi_ss/User%20Retention%20Proxy%20%28Users%20who%20returned%20to%20rate%20after%2030%20days%29.png)
@@ -166,7 +217,17 @@ LIMIT 10;
 ### ✅ Q15: Users who created lists vs rated movies
 
 ```sql
--- Your SQL query for "Users who created lists vs rated movies" goes here
+WITH list_users AS (
+    SELECT DISTINCT user_id FROM user_lists
+),
+rating_users AS (
+    SELECT DISTINCT user_id FROM ratings
+)
+SELECT 
+    'Created Lists' AS activity, COUNT(*) FROM list_users
+UNION ALL
+SELECT 
+    'Rated Movies' AS activity, COUNT(*) FROM rating_users;
 ```
 
 ![Users who created lists vs rated movies](images/images/mubi_ss/Users%20who%20created%20lists%20vs%20rated%20movies.png)
@@ -176,8 +237,10 @@ LIMIT 10;
 ### ✅ Q16: Distribution of Ratings (1-5)
 
 ```sql
--- Your SQL query for "Distribution of Ratings (1-5)" goes here
-```
+SELECT rating_score, COUNT(*) AS total_count
+FROM ratings
+GROUP BY rating_score
+ORDER BY rating_score;```
 
 ![Distribution of Ratings (1-5)](images/images/mubi_ss/Distribution%20of%20Ratings%20%281-5%29.png)
 
