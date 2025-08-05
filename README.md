@@ -39,7 +39,7 @@ ORDER BY watch_count DESC
 LIMIT 10;
 
 
-![Q12](images/images/mubi_ss/Most%20Watched%20Movies%20by%20Users%20Under%2025.png)
+![Q3](images/images/mubi_ss/Most%20Watched%20Movies%20by%20Users%20Under%2025.png)
 
 
 Q4 Movies with the Most 5-Star Ratings
@@ -78,7 +78,7 @@ GROUP BY u.user_id
 ORDER BY total_ratings DESC
 LIMIT 10;
 
-![Q4](images/images/mubi_ss/Monthly%20Active%20Users%20Trend%20Based%20on%20Ratings.png)
+![Q6](images/images/mubi_ss/Monthly%20Active%20Users%20Trend%20Based%20on%20Ratings.png)
 
 
 
@@ -292,4 +292,4 @@ ORDER BY
 LIMIT 10;
 
 
-![Q3](images/images/mubi_ss/Top%20Directors%20Based%20on%20Average%20Movie%20Rating%20(Min.%205%20Movies).png)
+![Q16](images/images/mubi_ss/Top%20Directors%20Based%20on%20Average%20Movie%20Rating%20(Min.%205%20Movies).png)
