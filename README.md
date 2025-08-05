@@ -24,8 +24,8 @@ HAVING COUNT(*) >= 100
 ORDER BY avg_rating DESC
 LIMIT 10;
 
-![Q2 Output](images/Top 10 Highest-Rated Movies (min 100 ratings).png)
 
+![Q2 Output](images/Top 10 Highest-Rated Movies (min 100 ratings).png)
 
 
 Q3 Most-Watched Movies
@@ -38,7 +38,8 @@ GROUP BY m.movie_id
 ORDER BY watch_count DESC
 LIMIT 10;
 
-![Q3 Output](images/Most-Watched Movies.png)
+
+![Q12](images/images/mubi_ss/Most%20Watched%20Movies%20by%20Users%20Under%2025.png)
 
 
 Q4 Movies with the Most 5-Star Ratings
@@ -77,7 +78,7 @@ GROUP BY u.user_id
 ORDER BY total_ratings DESC
 LIMIT 10;
 
-![Q6 Output](images/Most Active Users (Based on Number of Ratings).png)
+![Q4](images/images/mubi_ss/Monthly%20Active%20Users%20Trend%20Based%20on%20Ratings.png)
 
 
 
@@ -291,4 +292,4 @@ ORDER BY
 LIMIT 10;
 
 
-![Q16 Output](images/Top Directors by Movie Count.png)
+![Q3](images/images/mubi_ss/Top%20Directors%20Based%20on%20Average%20Movie%20Rating%20(Min.%205%20Movies).png)
