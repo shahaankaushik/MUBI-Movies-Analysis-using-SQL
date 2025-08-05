@@ -121,7 +121,22 @@ ORDER BY rating_score;
 ### ✅ Q12: Top Directors by Movie Count
 
 ```sql
--- Your SQL query for "Top Directors by Movie Count" goes here
+SELECT 
+    REPLACE(SUBSTR(director_url, INSTR(director_url, '/cast/') + 6), '-', ' ') AS director_name,
+    COUNT(*) AS movie_count
+FROM 
+    movies
+WHERE 
+    director_url IS NOT NULL 
+    AND director_url != ''
+    AND director_url LIKE '%/cast/%'
+    AND TRIM(SUBSTR(director_url, INSTR(director_url, '/cast/') + 6)) != 'unknown'
+GROUP BY 
+    director_name
+ORDER BY 
+    movie_count DESC
+LIMIT 10;
+
 ```
 
 ![Top Directors by Movie Count](images/images/mubi_ss/Top%20Directors%20by%20Movie%20Count.png)
