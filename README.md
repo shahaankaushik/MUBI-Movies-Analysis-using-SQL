@@ -9,7 +9,7 @@ SELECT
   (SELECT COUNT(*) FROM ratings) AS total_ratings;
 
 ![Q1 Output](images/total movies and total ratings.png)
-
+![Actual vs Predicted](Images/actual_vs_predicted.png)
 
 
 Q2 Top 10 Highest-Rated Movies (min 100 ratings)
