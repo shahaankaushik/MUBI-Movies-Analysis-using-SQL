@@ -58,16 +58,18 @@ LIMIT 10;
 ```
 ![Q5 Lowest Rated Movies (with at least 50 ratings)](images/images/mubi_ss/Top%2010%20Lowest-Rated%20Movies%20with%20at%20least%20100%20ratings.png)
 
-## Q6 Most Active Users (Based on Number of Ratings)
+## Q6 Distribution of Ratings (1-5)
+
 ```sql
-SELECT u.user_id, COUNT(*) AS total_ratings
-FROM ratings r
-JOIN users u ON r.user_id = u.user_id
-GROUP BY u.user_id
-ORDER BY total_ratings DESC
-LIMIT 10;
+SELECT rating_score, COUNT(*) AS total_count
+FROM ratings
+GROUP BY rating_score
+ORDER BY rating_score;```
 ```
-![Q6 Most Active Users (Based on Number of Ratings)](images/images/mubi_ss/Monthly%20Active%20Users%20Trend%20Based%20on%20Ratings.png)
+
+![Distribution of Ratings (1-5)](images/images/mubi_ss/Distribution%20of%20Ratings%20%281-5%29.png)
+
+---
 
 ## Q7 Newest vs. Oldest Movies in the Database
 ```sql
@@ -233,14 +235,3 @@ SELECT
 ![Users who created lists vs rated movies](images/images/mubi_ss/Users%20who%20created%20lists%20vs%20rated%20movies.png)
 
 ---
-
-### ✅ Q16: Distribution of Ratings (1-5)
-
-```sql
-SELECT rating_score, COUNT(*) AS total_count
-FROM ratings
-GROUP BY rating_score
-ORDER BY rating_score;```
-
-![Distribution of Ratings (1-5)](images/images/mubi_ss/Distribution%20of%20Ratings%20%281-5%29.png)
-
