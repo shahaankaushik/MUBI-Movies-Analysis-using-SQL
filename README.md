@@ -79,16 +79,26 @@ SELECT
 ```
 ![Q7 Newest vs. Oldest Movies in the Database](images/images/mubi_ss/Newest%20vs.%20Oldest%20Movies%20in%20the%20Database.png)
 
-## Q8 Distribution of Ratings (1-5)
+## Q8 Users who created lists vs rated movies
+
 ```sql
-SELECT rating_score, COUNT(*) AS total_count
-FROM ratings
-GROUP BY rating_score
-ORDER BY rating_score;
+WITH list_users AS (
+    SELECT DISTINCT user_id FROM user_lists
+),
+rating_users AS (
+    SELECT DISTINCT user_id FROM ratings
+)
+SELECT 
+    'Created Lists' AS activity, COUNT(*) FROM list_users
+UNION ALL
+SELECT 
+    'Rated Movies' AS activity, COUNT(*) FROM rating_users;
 ```
-![Q8 Distribution of Ratings (1-5)](images/images/mubi_ss/Distribution%20of%20Ratings%20%281-5%29.png)
+
+![Users who created lists vs rated movies](images/images/mubi_ss/Users%20who%20created%20lists%20vs%20rated%20movies.png)
 
 ---
+
 
 ### ✅ Q9: Ratings Distribution (Score Buckets)
 
@@ -213,25 +223,5 @@ WHERE
 ```
 
 ![User Retention Proxy (Users who returned to rate after 30 days)](images/images/mubi_ss/User%20Retention%20Proxy%20%28Users%20who%20returned%20to%20rate%20after%2030%20days%29.png)
-
----
-
-### ✅ Q15: Users who created lists vs rated movies
-
-```sql
-WITH list_users AS (
-    SELECT DISTINCT user_id FROM user_lists
-),
-rating_users AS (
-    SELECT DISTINCT user_id FROM ratings
-)
-SELECT 
-    'Created Lists' AS activity, COUNT(*) FROM list_users
-UNION ALL
-SELECT 
-    'Rated Movies' AS activity, COUNT(*) FROM rating_users;
-```
-
-![Users who created lists vs rated movies](images/images/mubi_ss/Users%20who%20created%20lists%20vs%20rated%20movies.png)
 
 ---
